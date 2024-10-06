@@ -1,0 +1,16 @@
+{
+  "userResorts": [
+    [
+      "100085947075503",
+      {
+        "name": "Ace Resort",
+        "level": 1,
+        "cleanliness": 32,
+        "value": 112000,
+        "imageURL": "https://i.imgur.com/SOA08ZY.png",
+        "lastUpgradeTime": 0
+      }
+    ]
+  ],
+  "cleanlinessCooldowns": []
+}

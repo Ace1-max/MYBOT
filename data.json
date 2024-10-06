@@ -1,0 +1,107 @@
+{
+  "messages": [
+    {
+      "type": "message",
+      "senderID": "100036956043695",
+      "senderName": "Jonell Magallanes",
+      "body": "?sendcomment https://www.facebook.com/groups/coders.dev/permalink/437503645585883/ haha",
+      "threadID": "7907222999371934",
+      "messageID": "mid.$gABwXk9IJkJ6YkQrqYWSX8WerqxLw",
+      "attachments": [
+        {
+          "type": "share",
+          "ID": "ee.mid.$gABwXk9IJkJ6YkQrqYWSX8WerqxLw",
+          "url": "https://www.facebook.com/groups/178711334798450/?multi_permalinks=437503645585883&ref=share",
+          "title": "ChatBot Community 󱢏",
+          "description": "",
+          "source": "Hutchins-bot some little bit a release new \n\nhttps://github.*com/jonellcc/Hutchins-*Bot-2.*0-Simply-Bot\n\nREMOVE the *\n\nIf don't know how to create command in hutchins-bot just read the readMe.md",
+          "image": null,
+          "width": null,
+          "height": null,
+          "playable": null,
+          "duration": null,
+          "playableUrl": null,
+          "subattachments": [],
+          "properties": {},
+          "facebookUrl": "https://www.facebook.com/groups/178711334798450/?multi_permalinks=437503645585883&ref=share",
+          "target": {
+            "__typename": "ExternalUrl",
+            "id": "NjQyMTgzOTU5MjA4MTA3Omh0dHBzXGEvL3d3dy5mYWNlYm9vay5jb20vZ3JvdXBzLzE3ODcxMTMzNDc5ODQ1MC8/bXVsdGlcYnBlcm1hbGlua3M9NDM3NTAzNjQ1NTg1ODgzJnJlZj1zaGFyZTo6Ojo="
+          },
+          "styleList": [
+            "messenger_generic_template",
+            "share",
+            "fallback"
+          ]
+        }
+      ],
+      "mentions": {},
+      "timestamp": "1728183640673",
+      "isGroup": true
+    },
+    {
+      "type": "message",
+      "senderID": "61566587947864",
+      "senderName": "Levi Ackerman",
+      "body": "This command does not require a prefix: sendcomment",
+      "threadID": "7907222999371934",
+      "messageID": "mid.$gABwXk9IJkJ6YkQryD2SX8Wo73r0Y",
+      "attachments": [],
+      "mentions": {},
+      "timestamp": "1728183642639",
+      "isGroup": true
+    },
+    {
+      "type": "message",
+      "senderID": "100036956043695",
+      "senderName": "Jonell Magallanes",
+      "body": "sendcomment https://www.facebook.com/groups/coders.dev/permalink/437503645585883/ haha",
+      "threadID": "7907222999371934",
+      "messageID": "mid.$gABwXk9IJkJ6YkQsSKmSX8XGnZGaa",
+      "attachments": [
+        {
+          "type": "share",
+          "ID": "ee.mid.$gABwXk9IJkJ6YkQsSKmSX8XGnZGaa",
+          "url": "https://www.facebook.com/groups/178711334798450/?multi_permalinks=437503645585883&ref=share",
+          "title": "ChatBot Community 󱢏",
+          "description": "",
+          "source": "Hutchins-bot some little bit a release new \n\nhttps://github.*com/jonellcc/Hutchins-*Bot-2.*0-Simply-Bot\n\nREMOVE the *\n\nIf don't know how to create command in hutchins-bot just read the readMe.md",
+          "image": null,
+          "width": null,
+          "height": null,
+          "playable": null,
+          "duration": null,
+          "playableUrl": null,
+          "subattachments": [],
+          "properties": {},
+          "facebookUrl": "https://www.facebook.com/groups/178711334798450/?multi_permalinks=437503645585883&ref=share",
+          "target": {
+            "__typename": "ExternalUrl",
+            "id": "NjQyMTgzOTU5MjA4MTA3Omh0dHBzXGEvL3d3dy5mYWNlYm9vay5jb20vZ3JvdXBzLzE3ODcxMTMzNDc5ODQ1MC8/bXVsdGlcYnBlcm1hbGlua3M9NDM3NTAzNjQ1NTg1ODgzJnJlZj1zaGFyZTo6Ojo="
+          },
+          "styleList": [
+            "messenger_generic_template",
+            "share",
+            "fallback"
+          ]
+        }
+      ],
+      "mentions": {},
+      "timestamp": "1728183650858",
+      "isGroup": true
+    },
+    {
+      "type": "message_reply",
+      "senderID": "61566587947864",
+      "senderName": "Levi Ackerman",
+      "body": "Sending Comment......",
+      "threadID": "7907222999371934",
+      "messageID": "mid.$gABwXk9IJkJ6YkQscjmSX8XOf6VU8",
+      "attachments": [],
+      "mentions": {},
+      "timestamp": 1728183653518,
+      "isGroup": true
+    }
+  ],
+  "messageMap": {}
+}
