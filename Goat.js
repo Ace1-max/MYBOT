@@ -89,7 +89,8 @@ global.GoatBot = {
 	callbackListenTime: {}, // store callback listen 
 	storage5Message: [], // store 5 message to check listening loop
 	fcaApi: null, // store fca api
-	botID: null // store bot id
+	botID: null, // store bot id
+	dekuapi: "https://deku-rest-apis.ooguy.com" // deku api
 };
 
 global.db = {
