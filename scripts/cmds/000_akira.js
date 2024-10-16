@@ -3,12 +3,12 @@ const axios = require('axios');
 module.exports = {
   config: {
     name: 'akira',
-    version: '1.1.1',
+    version: '1.1.2',
     author: 'AceGerome',
     countDown: 5,
     role: 0,
     description: {
-      en: 'Chat with Akira-AI.',
+      en: 'Chat with Akira-AI with enhanced personality.',
     },
     category: '𝗘𝗗𝗨𝗖𝗔𝗧𝗜𝗢𝗡',
     guide: {
@@ -20,31 +20,37 @@ module.exports = {
     const { messageID, threadID, senderID } = event;
 
     const name = await getUserName(api, senderID);
-    
-    const greetings = [
-      `Konichiwa ${name}!`,
-      'Konichiwa senpai!',
-      'Hora!',
-      `Yoroshiku onegaishimasu, ${name}!`,
-      `Ogenki desu ka, ${name}?`
-    ];
-    const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+    const greeting = getTimeBasedGreeting(name);
 
-    if (!args.length) return api.sendMessage(randomGreeting, threadID, messageID);
+    if (!args.length) return api.sendMessage(greeting, threadID, messageID);
 
-    // Chat message
     const userMessage = args.join(' ');
 
     try {
-      const apiResponse = await getAIResponse(userMessage);
-
-      return api.sendMessage(apiResponse, threadID, messageID);
+      const akiraResponse = await getAIResponse(userMessage);
+      
+      return api.sendMessage(akiraResponse, threadID, messageID);
     } catch (error) {
       console.error('Error in Akira-AI command:', error);
       return api.sendMessage('There was an error processing your request. Please try again later.', threadID, messageID);
     }
   }
 };
+
+function getTimeBasedGreeting(name) {
+  const currentHour = new Date().getHours();
+  let greeting;
+  
+  if (currentHour < 12) {
+    greeting = `Ohayou gozaimasu, ${name}-san! Ready for a new day?`;
+  } else if (currentHour < 18) {
+    greeting = `Konnichiwa, ${name}-san! How's your afternoon going?`;
+  } else {
+    greeting = `Konbanwa, ${name}-san! Let's wind down with some knowledge!`;
+  }
+
+  return greeting;
+}
 
 async function getUserName(api, userID) {
   try {
@@ -57,7 +63,8 @@ async function getUserName(api, userID) {
 }
 
 async function getAIResponse(userMessage) {
-  const apiUrl = `https://celestial-dainsleif-v2.onrender.com/gpt?gpt=${encodeURIComponent(userMessage)}`;
+  const apiUrl = `https://celestial-dainsleif-v2.onrender.com/gpt?gpt=You are Akira, an energetic, helpful anime-style assistant. Always respond in a fun, engaging, and slightly quirky way. Here's the user's message: "${encodeURIComponent(userMessage)}"`;
+  
   const response = await axios.get(apiUrl);
-  return response.data.content || response.data;
+  return response.data.content || response.data || "Sorry, I couldn't come up with a response!";
 }
