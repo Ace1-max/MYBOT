@@ -60,6 +60,8 @@
     "gpt.js",
     "dhbc.js",
     "weather.js",
-    "2_rest.js"
+    "2_rest.js",
+    "000_blackbox.js",
+    "000_box.js"
   ]
 }
