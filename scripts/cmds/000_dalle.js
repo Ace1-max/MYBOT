@@ -18,7 +18,7 @@ module.exports = {
     aliases: ["imagegen", "aiimage"],
     author: "AceGerome",
     version: "2.2",
-    cooldowns: 20,
+    countDown: 20,
     role: 0,
     description: "Generates an image based on a prompt with optional style selection.",
     category: "image",
