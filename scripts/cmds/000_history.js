@@ -14,7 +14,7 @@ module.exports = {
   },
 
   onStart: async function ({ api, args, event }) {
-    const searchQuery = args.join(" ").trim(); // Clean input
+    const searchQuery = args.join(" ").trim(); 
 
     if (!searchQuery) {
       return api.sendMessage("Please provide a search query (e.g., history WW1).", event.threadID);
@@ -26,7 +26,7 @@ module.exports = {
       const { title, extract, thumbnail, content_urls } = response.data;
 
       if (title && extract) {
-        let messageContent = `📜 **Information about "${title}":**\n\n${extract}\n\n🔗 [Read more here](${content_urls.desktop.page})`;
+        let messageContent = `📜 Information about "${title}":\n\n${extract}\n\n🔗 [Read more here](${content_urls.desktop.page})`;
 
         if (thumbnail && thumbnail.source) {
           messageContent += `\n🖼️ Image: ${thumbnail.source}`;
