@@ -32,14 +32,14 @@ module.exports = {
       const sourceUrl = data.AbstractURL || '';
       const relatedTopics = data.RelatedTopics || [];
 
-      let msg = `🔎 **You searched for:** ${query}\n━━━━━━━━━━━━━━━\n📚 **Topic**: ${heading}\n\n${abstract}`;
+      let msg = `🔎 You searched for: ${query}\n━━━━━━━━━━━━━━━\n📚 Topic: ${heading}\n\n${abstract}`;
 
       if (sourceUrl) {
-        msg += `\n\n🌐 **More Info**: [Click here](${sourceUrl})`;
+        msg += `\n\n🌐 More Info: [Click here](${sourceUrl})`;
       }
 
       if (relatedTopics.length > 0) {
-        msg += `\n\n📂 **Related Topics**:\n`;
+        msg += `\n\n📂 Related Topics:\n`;
         relatedTopics.slice(0, 3).forEach((topic, index) => {
           msg += `  ${index + 1}. [${topic.Text}](${topic.FirstURL})\n`;
         });
