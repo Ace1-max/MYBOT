@@ -1,77 +1,91 @@
 const moment = require("moment-timezone");
 
 module.exports = {
-	config: {
-		name: "duck",
-		aliases: ["dailyduck"], 
-		version: "1.2",
-		author: "AceGerome",
-		countDown: 15,
-		role: 0,
-		description: {
-			en: "Receive daily Duck gift"
-		},
-		category: "game",
-		guide: {
-			en: "   {pn}"
-				+ "\n   {pn} info: View Daily Duck gift information"
-		}, 
-		envConfig: {
-			duckReward: {
-				coin: 1000
-			}
-		}
-	}, 
+    config: {
+        name: "duck",
+        aliases: ["dailyduck"], 
+        version: "1.3",
+        author: "AceGerome",
+        countDown: 15,
+        role: 0,
+        description: {
+            en: "Receive daily Duck gift"
+        },
+        category: "game",
+        guide: {
+            en: "   {pn}"
+                + "\n   {pn} info: View Daily Duck gift information"
+                + "\n   {pn} stats: View your Duck gift statistics"
+        }, 
+        envConfig: {
+            duckReward: {
+                baseCoin: 1000,
+                festiveMultiplier: 2
+            }
+        }
+    }, 
 
-	langs: {
-		en: {
-			monday: "Monday",
-			tuesday: "Tuesday",
-			wednesday: "Wednesday",
-			thursday: "Thursday",
-			friday: "Friday",
-			saturday: "Saturday",
-			sunday: "Sunday",
-			alreadyReceived: "Quack! You have already received the Duck gift. Quack! 🦆",
-			received: "Quack! You got %1 coins from the duck Now. Quack! 🦆"
-		}
-	},
+    langs: {
+        en: {
+            monday: "Monday",
+            tuesday: "Tuesday",
+            wednesday: "Wednesday",
+            thursday: "Thursday",
+            friday: "Friday",
+            saturday: "Saturday",
+            sunday: "Sunday",
+            alreadyReceived: "Quack! You have already received the Duck gift today. Quack! 🦆",
+            received: "Quack! You got %1 coins from the Duck gift. Now you have a total of %2 coins! Quack! 🦆",
+            stats: "Quack! You have received the Duck gift %1 times this week. Your total Duck coins: %2.",
+            festiveBonus: "🎉 Happy Holidays! You've received a festive bonus of %1 Duck coins! 🎉"
+        }
+    },
 
-	onStart: async function ({ args, message, event, envCommands, usersData, commandName, getLang }) {
-	  const reward = envCommands[commandName].duckReward;
-		if (args[0] == "info") {
-			let msg = "";
-			for (let i = 1; i < 8; i++) {
-				const getCoin = Math.floor(reward.coin * (1 + 20 / 100) ** ((i == 0 ? 7 : i) - 1));
-				const day = i == 7 ? getLang("sunday") :
-					i == 6 ? getLang("saturday") :
-						i == 5 ? getLang("friday") :
-							i == 4 ? getLang("thursday") :
-								i == 3 ? getLang("wednesday") :
-									i == 2 ? getLang("tuesday") :
-										getLang("monday");
-				msg += `${day}: ${getCoin} Duck coin\n`;
-			}
-			return message.reply(msg);
-		}
-		
-		const dailyMoney = Math.floor(Math.random() * 1000) + 1;
-		const dateTime = moment.tz("Asia/Ho_Chi_Minh").format("DD/MM/YYYY");
-		const date = new Date();
-		const currentDay = date.getDay(); // 0: sunday, 1: monday, 2: tuesday, 3: wednesday, 4: thursday, 5: friday, 6: saturday
-		const { senderID } = event;
+    onStart: async function ({ args, message, event, envCommands, usersData, commandName, getLang }) {
+        const rewardConfig = envCommands[commandName].duckReward;
+        const dateTime = moment.tz("Asia/Ho_Chi_Minh").format("DD/MM/YYYY");
+        const date = new Date();
+        const currentDay = date.getDay();
+        const { senderID } = event;
 
-		const userData = await usersData.get(senderID);
-		if (userData.data.duckReward === dateTime)
-			return message.reply(getLang("alreadyReceived"));
+        const userData = await usersData.get(senderID);
+        
+        if (args[0] === "info") {
+            let msg = "Duck Gift Rewards:\n";
+            for (let i = 0; i < 7; i++) {
+                const getCoin = Math.floor(rewardConfig.baseCoin * (1 + 0.20) ** i);
+                const day = getLang(["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"][i]);
+                msg += `${day}: ${getCoin} Duck coins\n`;
+            }
+            return message.reply(msg);
+        }
 
-		const getCoin = Math.floor(reward.coin * (1 + 20 / 100) ** ((currentDay == 0 ? 7 : currentDay) - 1));
-		userData.data.duckReward = dateTime;
-		await usersData.set(senderID, {
-			money: userData.money + getCoin,
-			data: userData.data
-		});
-		message.reply(getLang("received", getCoin));
-	}
+        if (args[0] === "stats") {
+            const duckCount = userData.data.duckCount || 0;
+            const totalCoins = userData.money || 0;
+            return message.reply(getLang("stats", duckCount, totalCoins));
+        }
+
+        if (userData.data.duckReward === dateTime) {
+            return message.reply(getLang("alreadyReceived"));
+        }
+
+        const isFestivePeriod = /* your condition for festive events here, e.g., holidays */;
+        const festiveMultiplier = isFestivePeriod ? rewardConfig.festiveMultiplier : 1;
+        const getCoin = Math.floor(rewardConfig.baseCoin * (1 + 0.20) ** (currentDay) * festiveMultiplier);
+
+        userData.data.duckReward = dateTime;
+        userData.data.duckCount = (userData.data.duckCount || 0) + 1;
+        await usersData.set(senderID, {
+            money: userData.money + getCoin,
+            data: userData.data
+        });
+
+        let responseMessage = getLang("received", getCoin, userData.money + getCoin);
+        if (isFestivePeriod) {
+            responseMessage += `\n${getLang("festiveBonus", getCoin)}`;
+        }
+        message.reply(responseMessage);
+    }
 };
-
+		
