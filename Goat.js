@@ -90,7 +90,7 @@ global.GoatBot = {
 	storage5Message: [], // store 5 message to check listening loop
 	fcaApi: null, // store fca api
 	botID: null, // store bot id
-	dekuapi: global.GoatBot.config.dekuapi // deku api
+	dekuapi: "https://joshweb.click" // deku api
 };
 
 global.db = {
