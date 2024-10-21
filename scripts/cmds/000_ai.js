@@ -9,10 +9,10 @@ const Prefixes = [
 
 const apiEndpoints = [
   'https://celestial-dainsleif-v2.onrender.com/gpt?gpt=',
-  'https://deku-rest-apis.ooguy.com/api/llama-3-70b?q=',
-  'https://deku-rest-apis.ooguy.com/api/gemma-7b?q=',
-  'https://deku-rest-apis.ooguy.com/gemini?prompt=',
-  'https://deku-rest-apis.ooguy.com/api/liner?q=', 
+  'https://joshweb.click/api/llama-3-70b?q=',
+  'https://joshweb.click/api/gemma-7b?q=',
+  'https://joshweb.click/gemini?prompt=',
+  'https://joshweb.click/api/liner?q=', 
   'https://hiroshi-api.onrender.com/ai/gpt3?ask=', 
   'https://jailbreak-api.vercel.app/ai?ask='
 ];
