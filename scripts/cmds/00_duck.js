@@ -70,7 +70,7 @@ module.exports = {
             return message.reply(getLang("alreadyReceived"));
         }
 
-        const isFestivePeriod = /* your condition for festive events here, e.g., holidays */;
+        const isFestivePeriod = "holidays"/* your condition for festive events here, e.g., holidays */;
         const festiveMultiplier = isFestivePeriod ? rewardConfig.festiveMultiplier : 1;
         const getCoin = Math.floor(rewardConfig.baseCoin * (1 + 0.20) ** (currentDay) * festiveMultiplier);
 
